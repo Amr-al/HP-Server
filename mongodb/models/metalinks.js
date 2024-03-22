@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");// import autopopulate from "mongoose-autopopulate";
+const mongoose = require("mongoose"); // import autopopulate from "mongoose-autopopulate";
 const { Schema } = mongoose;
 
 const metalinksSchema = Schema({
@@ -17,8 +17,8 @@ const metalinksSchema = Schema({
   keywords: {
     type: String,
     required: true,
-  }
-
+  },
+  article: String,
 });
 // areaSchema.plugin(autopopulate);
 

@@ -194,12 +194,13 @@ app.get("/getaboutus", async function (req, res) {
 });
 app.post("/addmeta", async function (req, res) {
   try {
-    const { link, title, description, keywords } = req.body;
+    const { link, title, description, keywords, article } = req.body;
     const meta = new MetaLinks({
       link: link,
       title: title,
       description: description,
       keywords: keywords,
+      article
     });
     await meta.save();
     res.send({ message: "success" });
@@ -228,9 +229,10 @@ app.post("/getmeta", async function (req, res) {
 });
 app.put("/editmeta", async function (req, res) {
   try {
+    console.log(req.body);
     const meta = await MetaLinks.findOneAndUpdate(
-      { link: req.body.link },
-      req.body
+      { _id: req.body.id },
+      req.body.formData
     );
     if (meta) await meta.save();
     res.send({ message: "success" });

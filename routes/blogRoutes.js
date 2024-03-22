@@ -53,12 +53,7 @@ app.get("/", async (req, res) => {
       .limit(limit)
       .skip((page - 1) * limit)
       .sort({ createdAt: -1 })
-    } else {
-      blogs = await Blog.find()
-      .limit(limit)
-      .skip((page - 1) * limit)
-      .sort({ createdAt: -1 })
-    }
+    } 
     res.json(blogs);
   } catch (error) {
     res.status(500).json({ error: error.message });
