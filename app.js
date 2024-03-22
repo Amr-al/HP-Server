@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const morgan = require("morgan");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const connectDB = require("./mongodb/connect");
@@ -19,12 +20,12 @@ const utils = require("./routes/utils.routes");
 const tenant = require("./routes/tenant.routes");
 const pageTitle = require("./routes/pageTitle.routes");
 const favorite = require("./routes/favorite.routes");
-const bindFlmngr = require('@flmngr/flmngr-server-node-express')
+const bindFlmngr = require('@flmngr/flmngr-server-node-express');
 dotenv.config();
 
 const app = express();
 app.use(express.json({ limit: "100mb" }));
-app.use(cors())
+app.use(cors());
 
 bindFlmngr.bindFlmngr({
   app: app,
@@ -34,6 +35,7 @@ bindFlmngr.bindFlmngr({
 });
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
+app.use(morgan("dev"));
 
 
 app.use("/api/user", userRoutes);

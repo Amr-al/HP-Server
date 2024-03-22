@@ -3,18 +3,18 @@ const sendEmail = async (email, emailRec, subject, html) => {
   try {
     const transporter = nodemailer.createTransport({
       // host: process.env.EMAILHOST,
-      port: 465,
-      secure: true,
-      // service: "gmail",
-      host: 'mail.housepointegypt.com',
+      // port: 465,
+      // secure: true,
+      service: "gmail",
+      // host: 'mail.housepointegypt.com',
       auth: {
         user: process.env.EMAILUSER,
         pass: process.env.EMAILPASS,
       },
-      tls: {
-        rejectUnauthorized: false
+      // tls: {
+      //   rejectUnauthorized: false
 
-      }
+      // }
     });
 
     await transporter.sendMail({
