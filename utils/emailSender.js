@@ -19,7 +19,7 @@ const sendEmail = async (email, emailRec, subject, html) => {
 
     await transporter.sendMail({
       from: emailRec,
-      to: process.env.EMAILUSER,
+      to: process.env.COMPANY_MAIL,
       subject: subject,
       html: html,
     });
