@@ -241,4 +241,16 @@ app.put("/editmeta", async function (req, res) {
     res.status(500).send({ message: err.message });
   }
 });
+app.delete('/deletemeta/:id', async function (req, res) {
+  console.log(req.params.id);
+  try {
+     await MetaLinks.findOneAndDelete(
+      { _id: req.params.id },
+    );
+    res.send({ message: "success" });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({ message: err.message });
+  }
+});
 module.exports = app;
