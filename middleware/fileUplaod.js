@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
     const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
     const ext = file.mimetype.split("/")[1];
 
-    cb(null, 0 + "-" + uniqueSuffix + `.${ext}`);
+    cb(null, 0 + "-" + uniqueSuffix + `.webp`);
   },
 });
 const mainWithImageStorage = multer.diskStorage({
@@ -26,7 +26,7 @@ const mainWithImageStorage = multer.diskStorage({
     const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
     const ext = file.mimetype.split("/")[1];
 
-    cb(null, 0 + "-" + uniqueSuffix + `.${ext}`);
+    cb(null, 0 + "-" + uniqueSuffix + `.webp`);
   },
 });
 const tenantImageStorage = multer.diskStorage({
@@ -43,7 +43,7 @@ const tenantImageStorage = multer.diskStorage({
     const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
     const ext = file.mimetype.split("/")[1];
 
-    cb(null, 0 + "-" + uniqueSuffix + `.${ext}`);
+    cb(null, 0 + "-" + uniqueSuffix + `.webp`);
   },
 });
 const watermarkStorage = multer.diskStorage({
@@ -58,7 +58,7 @@ const watermarkStorage = multer.diskStorage({
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
     const ext = file.mimetype.split("/")[1];
-    cb(null, "logo_200_85" + `.${ext}`);
+    cb(null, "logo_200_85" + `.webp`);
   },
 });
 const blogStorage = multer.diskStorage({
@@ -73,7 +73,7 @@ const blogStorage = multer.diskStorage({
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
     const ext = file.mimetype.split("/")[1];
-    cb(null, 0 + "-" + uniqueSuffix + `.${ext}`);
+    cb(null, 0 + "-" + uniqueSuffix + `.webp`);
   },
 });
 const allowedFiles = (req, file, cb) => {
@@ -161,7 +161,7 @@ const multiFiles = (keyName, maxNumOfFiles) => {
   return (req, res, next) => {
     const files = upload.array(`${keyName}`, maxNumOfFiles);
 
-    files(req, res, function (err) {
+    files(req, res, function (req,err) {
       if (err instanceof multer.MulterError) {
         res.status(400).send({
           message:

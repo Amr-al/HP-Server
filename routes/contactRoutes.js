@@ -18,7 +18,7 @@ router.post('/submit', async (req, res) => {
     // sendEmail(email, "Inquiry", propertyInquiry(property.title, property.images[0], property.refNumber, property.beds, property.baths, property.propertyArea, property.price, name))
     let url = "https://housepointegypt.com/" + property.type + "/" + property.propertyType.name + "/" + property.area.name + "/" + property.subarea.name + "/" + property.title + "-" + property.refNumber
     url.toLowerCase().split(" ").join("-")
-    sendEmail(process.env.EMAILUSER, email, "Request", propertyRequest(property.title, process.env.PROPERTY_BASE_URL + "/main/" + property.mainimage.image, property.refNumber, property.beds, property.baths, property.propertyArea, property.price, name, message, mobile, email, url))
+    sendEmail(process.env.EMAILUSER, email, "Request", propertyRequest(property.title, process.env.PROPERTY_BASE_URL + "/" +property.images[0].image, property.refNumber, property.beds, property.baths, property.propertyArea, property.price, name, message, mobile, email, url))
     res.json({ message: 'Form submitted successfully' });
   } catch (error) {
     console.error(error);
